@@ -12,8 +12,8 @@ class GetStarted extends StatelessWidget {
           children: <Widget>[
             //===Start-Komentar-1: Gambar===
             Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
-              height: MediaQuery.of(context).size.height / 2.3,
+              margin: EdgeInsets.only(left: 2, right: 2),
+              height: MediaQuery.of(context).size.height / 2.7,
               decoration: BoxDecoration(
                   color: Colors.white10,
                   image:
@@ -40,6 +40,7 @@ class GetStarted extends StatelessWidget {
             //==Start Komentar-3==
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
+              // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
                   // Navigator.pushReplacement(context, /login)
@@ -51,7 +52,7 @@ class GetStarted extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: <Color>[Color(0xffee0000), Color(0xFFE2E6EC)],
+                      colors: <Color>[Color(0xffa88e8e), Color(0xFFB30B20)],
                     ),
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
