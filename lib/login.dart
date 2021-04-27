@@ -35,7 +35,9 @@ class ContentArea extends StatelessWidget {
                   children: <Widget>[
                     // ignore: deprecated_member_use
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0),
                       ),
