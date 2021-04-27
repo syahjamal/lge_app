@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qa_app/get_started.dart';
+import 'package:qa_app/home.dart';
+import 'package:qa_app/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GetStarted(),
+      routes: {
+        '/': (context) => GetStarted(),
+        '/login':(context) => Login(),
+        '/home':(context) => Home(),
+      },
     );
   }
 }

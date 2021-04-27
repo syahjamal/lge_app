@@ -23,6 +23,62 @@ class ContentArea extends StatelessWidget {
       children: <Widget>[
         //===KOMENTAR-1===
         FormLogin(),
+
+        //===Komentar-2===
+        Flexible(
+          flex: 1,
+          child: Container(
+            margin: const EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    // ignore: deprecated_member_use
+                    RaisedButton(
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0),
+                      ),
+                      padding: const EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: <Color>[
+                              Color(0xFF959095),
+                              Color(0xFFBD2024)
+                            ],
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(80.0)
+                          ),
+                        ),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            minWidth: 350.0,
+                            minHeight: 36.0,
+                          ),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Login',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                    padding: EdgeInsets.only(top:15),
+                ),
+                Divider()
+              ],
+            ),
+          ),
+        )
       ],
     );
   }
@@ -43,12 +99,12 @@ class FormLogin extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
           ),
           Container(
-            height: MediaQuery.of(context).size.height / 2.7,
+            height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
               color: Colors.white10,
               image: DecorationImage(
                 image: AssetImage('images/header_login.png'),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
@@ -85,7 +141,7 @@ class FormLogin extends StatelessWidget {
                               color: Colors.pinkAccent,
                             ),
                           ),
-                          labelText: "Email: ",
+                          labelText: "NIK : ",
                           labelStyle: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),

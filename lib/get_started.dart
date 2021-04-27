@@ -43,7 +43,7 @@ class GetStarted extends StatelessWidget {
               // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
-                  // Navigator.pushReplacement(context, /login)
+                  Navigator.pushNamed(context, '/login');
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0),
