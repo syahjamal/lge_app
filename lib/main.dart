@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qa_app/get_started.dart';
 import 'package:qa_app/home.dart';
+import 'package:qa_app/model_change_sheet.dart';
 import 'package:qa_app/login.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => GetStarted(),
         '/login':(context) => Login(),
         '/home':(context) => Home(),
+        '/model':(context) => modelChange(),
       },
     );
   }

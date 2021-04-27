@@ -21,114 +21,22 @@ class ContentArea extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Header(),
+        bgHeaderHome(),
+        submitButton(context),
       ],
     );
   }
 }
 
-class Header extends StatelessWidget {
-  const Header({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[backgroundHeader(), summaryData()],
-          ),
-          cardDetail('Model', 'Name model change', '1000', 'out'),
-          cardDetail('Model', 'Name model change', '2000', 'in'),
-          cardDetail('Model', 'Name model change', '3000', 'out'),
-        ],
-      ),
-    );
-  }
-}
-
-Widget cardDetail(title, description, total, type) {
-  //Card untuk data detail
-  return Card(
-    margin: EdgeInsets.only(top: 15, left: 15, right: 15),
-    elevation: 8,
-    child: ListTile(
-      leading: Icon(
-        type == 'out' ? Icons.subdirectory_arrow_left:Icons.subdirectory_arrow_right,
-        color: type == 'out' ? Colors.redAccent:Colors.lightGreen,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: Text(description),
-      trailing: Text(
-        total+" Pcs",
-        style: TextStyle(color: type == 'out' ? Colors.redAccent:Colors.lightGreen),
-      ),
-    ),
-  );
-}
-
-Widget summaryData() {
-  //Container untuk summary data check
-  return Positioned(
-    top: 120,
-    left: 26,
-
-    child: Container(
-      width: 340,
-      height: 120,
-
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Text("Model Change"),
-                Divider(),
-                Text(
-                  "data",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Text("Total Target"),
-                Divider(),
-                Text(
-                  "data",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                )
-              ],
-            )
-          ]
-        ),
-      ),
-    ),
-  );
-}
-
-Widget backgroundHeader() {
-  //Container untuk header
+Widget bgHeaderHome() {
   return Container(
-    height: 250,
+    height: 150,
     width: double.infinity,
     decoration: BoxDecoration(
       color: Colors.red[800],
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(30),
-        bottomRight: Radius.circular(30),
+        bottomLeft: Radius.circular(30.0),
+        bottomRight: Radius.circular(30.0),
       ),
     ),
     child: Padding(
@@ -137,22 +45,73 @@ Widget backgroundHeader() {
         left: 20,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Sulaiman Syah Jamal",
-            style: TextStyle(
-                fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "706436",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("Sulaiman Syah Jamal",
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            Text(
+              "706436",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            )
+          ]),
+    ),
+  );
+}
+
+// ignore: missing_return
+Widget submitButton(BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.all(20.0),
+    child: Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            // ignore: deprecated_member_use
+            RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/model');
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(80.0),
+              ),
+              padding: const EdgeInsets.all(0.0),
+              child: Ink(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[Color(0xFF959095), Color(0xFFBD2024)],
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                ),
+                child: Container(
+                  constraints: const BoxConstraints(
+                    minWidth: 350.0,
+                    minHeight: 36.0,
+                  ),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Submit',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 15),
+        ),
+        Divider()
+      ],
     ),
   );
 }
