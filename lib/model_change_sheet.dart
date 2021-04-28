@@ -5,6 +5,7 @@ class modelChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: MediaQuery.of(context).orientation == Orientation.landscape
           ? SingleChildScrollView(child: ContentArea())
           : ContentArea(),
