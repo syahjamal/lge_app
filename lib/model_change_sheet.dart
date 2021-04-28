@@ -80,7 +80,7 @@ Widget summaryData() {
     left: 26,
 
     child: Container(
-      width: 340,
+      width: 545,
       height: 120,
 
       decoration: BoxDecoration(

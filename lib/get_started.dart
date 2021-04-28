@@ -13,7 +13,7 @@ class GetStarted extends StatelessWidget {
             //===Start-Komentar-1: Gambar===
             Container(
               margin: EdgeInsets.only(left: 2, right: 2),
-              height: MediaQuery.of(context).size.height / 2.7,
+              height: MediaQuery.of(context).size.height / 2.2,
               decoration: BoxDecoration(
                   color: Colors.white10,
                   image:
@@ -60,7 +60,7 @@ class GetStarted extends StatelessWidget {
                   ),
                   constraints: const BoxConstraints(
                     minWidth: 150.0,
-                    minHeight: 36.0,
+                    minHeight: 50.0,
                   ),
                   alignment: Alignment.center,
                   child: const Text(
@@ -71,22 +71,6 @@ class GetStarted extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            //===End Komentar-3===
-            //===Start Komentar-4===
-            Spacer(),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                color: Colors.white
-              ),
-              // child: Image(
-              //   image: AssetImage('images/lge.png'),
-              // ),
             ),
           ],
         ),
