@@ -180,47 +180,116 @@ class _LinesState extends State<Lines> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: Row(children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Text(
-            "Line :",
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 18,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "Line :",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 18,
+              ),
             ),
+            DropdownButton<Item>(
+              hint: Text("Select You're Line"),
+              elevation: 8,
+              value: selectedLines,
+              underline: Container(
+                height: 1,
+                color: Colors.black,
+              ),
+              // ignore: non_constant_identifier_names
+              onChanged: (Item Value) {
+                setState(() {
+                  selectedLines = Value;
+                });
+              },
+              items: lines?.map((Item line) {
+                return DropdownMenuItem<Item>(
+                    value: line,
+                    child: Row(
+                      children: <Widget>[
+                        line.icon,
+                        SizedBox(width: 10),
+                        Text(
+                          line.name,
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ));
+              })?.toList(),
+            ),
+          ]),
+    );
+  }
+}
+
+class DatePicker extends StatefulWidget {
+  @override
+  _DatePickerState createState() => _DatePickerState();
+}
+
+class _DatePickerState extends State<DatePicker> {
+  DateTime _dateTime;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text('Pick Date :',
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 18,
+              )),
+          Padding(
+            padding: const EdgeInsets.only(left: 120),
+            child: Text(_dateTime == null
+                ? 'Nothing has been picker'
+                : _dateTime.toString()),
           ),
-        ),
-        DropdownButton<Item>(
-          hint: Text("Select You're Line"),
-          elevation: 8,
-          value: selectedLines,
-          underline: Container(
-            height: 1,
-            color: Colors.black,
-          ),
-          // ignore: non_constant_identifier_names
-          onChanged: (Item Value) {
-            setState(() {
-              selectedLines = Value;
-            });
-          },
-          items: lines?.map((Item line) {
-            return DropdownMenuItem<Item>(
-                value: line,
-                child: Row(
-                  children: <Widget>[
-                    line.icon,
-                    SizedBox(width: 10),
-                    Text(
-                      line.name,
-                      style: TextStyle(color: Colors.black),
-                    )
-                  ],
-                ));
-          })?.toList(),
-        ),
-      ]),
+          // ignore: deprecated_member_use
+          RaisedButton(
+              elevation: 8,
+              padding: const EdgeInsets.all(0.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFB30B20),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                ),
+                constraints: const BoxConstraints(
+                  minWidth: 90.0,
+                  minHeight: 40.0,
+                ),
+                alignment: Alignment.center,
+                child: const Text(
+                  'Pick a Date',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+              onPressed: () {
+                showDatePicker(
+                  context: context,
+                  initialDate: _dateTime == null ? DateTime.now() : _dateTime,
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2222),
+                ).then((date) {
+                  setState(() {
+                    _dateTime = date;
+                  });
+                });
+              })
+        ],
+      ),
     );
   }
 }
@@ -249,28 +318,7 @@ Widget cardForm(BuildContext context) {
                   ),
                 ),
                 Lines(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Flexible(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.date_range,
-                          color: Colors.pinkAccent,
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.pinkAccent,
-                          ),
-                        ),
-                        labelText: "Date :",
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                DatePicker(),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 30),
                   child: Flexible(
