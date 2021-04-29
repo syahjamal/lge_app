@@ -8,24 +8,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   int _currentIndex = 0;
-  List<Widget> _widgetList = [
-    bgHeaderHome(),
-    ContentArea(),
-    Login()
-  ];
+  List<Widget> _widgetList = [bgHeaderHome(), ContentArea(), Login()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body:
-      MediaQuery.of(context).orientation == Orientation.landscape
-          ? SingleChildScrollView(child: _widgetList[_currentIndex],)
+      body: MediaQuery.of(context).orientation == Orientation.landscape
+          ? SingleChildScrollView(
+              child: _widgetList[_currentIndex],
+            )
           : _widgetList[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedIconTheme: IconThemeData(color:  Colors.grey[400]),
+        unselectedIconTheme: IconThemeData(color: Colors.grey[400]),
         selectedIconTheme: IconThemeData(color: Colors.red[800]),
         unselectedLabelStyle: TextStyle(color: Colors.grey[400]),
         selectedLabelStyle: TextStyle(color: Colors.black),
@@ -33,17 +29,21 @@ class _HomeState extends State<Home> {
         type: BottomNavigationBarType.shifting,
         onTap: onTapped,
         currentIndex: _currentIndex,
-        items:[
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 36),
-              label: 'Home'
-          ),
+              icon: Icon(Icons.home, size: 36), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt, size: 36,),
+            icon: Icon(
+              Icons.list_alt,
+              size: 36,
+            ),
             label: 'Form',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.exit_to_app, size: 36,),
+            icon: Icon(
+              Icons.exit_to_app,
+              size: 36,
+            ),
             label: 'Logout',
           ),
         ],
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void onTapped(int index){
+  void onTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
@@ -112,6 +112,119 @@ Widget bgHeaderHome() {
   );
 }
 
+class Item {
+  const Item(this.name, this.icon);
+  final String name;
+  final Icon icon;
+}
+
+class Lines extends StatefulWidget {
+  @override
+  _LinesState createState() => _LinesState();
+}
+
+class _LinesState extends State<Lines> {
+  Item selectedLines;
+  List<Item> lines = <Item>[
+    const Item(
+        'T1',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'T2',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'T3',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'T4',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'T5',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'T6',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'OBM1',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+    const Item(
+        'OBM2',
+        Icon(
+          Icons.precision_manufacturing_rounded,
+          color: const Color(0xFFA30505),
+        )),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Row(children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(right: 10),
+          child: Text(
+            "Line :",
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 18,
+            ),
+          ),
+        ),
+        DropdownButton<Item>(
+          hint: Text("Select You're Line"),
+          elevation: 8,
+          value: selectedLines,
+          underline: Container(
+            height: 1,
+            color: Colors.black,
+          ),
+          // ignore: non_constant_identifier_names
+          onChanged: (Item Value) {
+            setState(() {
+              selectedLines = Value;
+            });
+          },
+          items: lines?.map((Item line) {
+            return DropdownMenuItem<Item>(
+                value: line,
+                child: Row(
+                  children: <Widget>[
+                    line.icon,
+                    SizedBox(width: 10),
+                    Text(
+                      line.name,
+                      style: TextStyle(color: Colors.black),
+                    )
+                  ],
+                ));
+          })?.toList(),
+        ),
+      ]),
+    );
+  }
+}
+
 Widget cardForm(BuildContext context) {
   return Container(
       width: MediaQuery.of(context).size.width,
@@ -135,28 +248,7 @@ Widget cardForm(BuildContext context) {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Flexible(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.precision_manufacturing_rounded,
-                          color: Colors.pink[600],
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.pinkAccent,
-                          ),
-                        ),
-                        labelText: "Line : ",
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                Lines(),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Flexible(
@@ -251,13 +343,4 @@ Widget submitButton(BuildContext context) {
           ),
         )),
   );
-}
-
-class LogoutPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-
-    );
-  }
 }
