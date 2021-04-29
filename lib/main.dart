@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qa_app/get_started.dart';
-import 'package:qa_app/home.dart';
-import 'package:qa_app/model_change_sheet.dart';
-import 'package:qa_app/login.dart';
+import 'package:qa_app/pages/get_started.dart';
+import 'package:qa_app/pages/home.dart';
+import 'package:qa_app/pages/model_change_sheet.dart';
+import 'package:qa_app/pages/login.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:qa_app/login.dart';
+import 'package:intl/intl.dart';
+import 'package:qa_app/widget/header.dart';
 
-// ignore: must_be_immutable
-class Home extends StatefulWidget {
+// ignore: must_be_immutable, camel_case_types
+class modelForm extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _modelFormState createState() => _modelFormState();
 }
 
-class _HomeState extends State<Home> {
-  int _currentIndex = 0;
-  List<Widget> _widgetList = [bgHeaderHome(), ContentArea(), Login()];
+// ignore: camel_case_types
+class _modelFormState extends State<modelForm> {
 
   @override
   Widget build(BuildContext context) {
@@ -17,44 +17,10 @@ class _HomeState extends State<Home> {
       resizeToAvoidBottomInset: false,
       body: MediaQuery.of(context).orientation == Orientation.landscape
           ? SingleChildScrollView(
-              child: _widgetList[_currentIndex],
-            )
-          : _widgetList[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedIconTheme: IconThemeData(color: Colors.grey[400]),
-        selectedIconTheme: IconThemeData(color: Colors.red[800]),
-        unselectedLabelStyle: TextStyle(color: Colors.grey[400]),
-        selectedLabelStyle: TextStyle(color: Colors.black),
-        fixedColor: Colors.red[800],
-        type: BottomNavigationBarType.shifting,
-        onTap: onTapped,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 36), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.list_alt,
-              size: 36,
-            ),
-            label: 'Form',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.exit_to_app,
-              size: 36,
-            ),
-            label: 'Logout',
-          ),
-        ],
-      ),
+        child: ContentArea(),
+      )
+          : ContentArea(),
     );
-  }
-
-  void onTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
   }
 }
 
@@ -68,48 +34,12 @@ class ContentArea extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        bgHeaderHome(),
+        Header(),
         cardForm(context),
         submitButton(context),
       ],
     );
   }
-}
-
-Widget bgHeaderHome() {
-  return Container(
-    height: 150,
-    width: double.infinity,
-    decoration: BoxDecoration(
-      color: Colors.red[800],
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(30.0),
-        bottomRight: Radius.circular(30.0),
-      ),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.only(
-        top: 60,
-        left: 20,
-      ),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("Sulaiman Syah Jamal",
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
-            Text(
-              "706436",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-              ),
-            )
-          ]),
-    ),
-  );
 }
 
 class Item {
@@ -247,8 +177,8 @@ class _DatePickerState extends State<DatePicker> {
           Padding(
             padding: const EdgeInsets.only(left: 120),
             child: Text(_dateTime == null
-                ? 'Nothing has been picker'
-                : _dateTime.toString()),
+                ? 'Nothing date selected'
+                : DateFormat('dd/MMM/yyyy').format(_dateTime)),
           ),
           // ignore: deprecated_member_use
           RaisedButton(
@@ -317,6 +247,28 @@ Widget cardForm(BuildContext context) {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20,),
+                  child: Flexible(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.qr_code,
+                          color: Colors.pinkAccent,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.pinkAccent,
+                          ),
+                        ),
+                        labelText: "Work Order :",
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Lines(),
                 DatePicker(),
                 Padding(
@@ -354,7 +306,7 @@ Widget submitButton(BuildContext context) {
     margin: const EdgeInsets.all(20.0),
     child: Padding(
         padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
+        const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
         // ignore: deprecated_member_use
         child: Flexible(
           // ignore: deprecated_member_use
@@ -385,7 +337,7 @@ Widget submitButton(BuildContext context) {
                 'Submit',
                 textAlign: TextAlign.center,
                 style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ),
