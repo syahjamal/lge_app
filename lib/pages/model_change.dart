@@ -272,7 +272,7 @@ Widget cardForm(BuildContext context) {
                 Lines(),
                 DatePicker(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 30),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Flexible(
                     child: TextField(
                       decoration: InputDecoration(
@@ -286,6 +286,28 @@ Widget cardForm(BuildContext context) {
                           ),
                         ),
                         labelText: "Model :",
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 30),
+                  child: Flexible(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.qr_code,
+                          color: Colors.pinkAccent,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.pinkAccent,
+                          ),
+                        ),
+                        labelText: "Total Order :",
                         labelStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -344,3 +366,4 @@ Widget submitButton(BuildContext context) {
         )),
   );
 }
+
